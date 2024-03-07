@@ -1,0 +1,18 @@
+diff --git a/node_modules/centrifuge/dist/centrifuge.js b/node_modules/centrifuge/dist/centrifuge.js
+index a4bb0fb..12b7d3a 100644
+--- a/node_modules/centrifuge/dist/centrifuge.js
++++ b/node_modules/centrifuge/dist/centrifuge.js
+@@ -270,7 +270,12 @@ var Centrifuge = /*#__PURE__*/function (_EventEmitter) {
+       };
+ 
+       setTimeout(function () {
+-        return xhr.send(JSON.stringify(data));
++        try {
++          return xhr.send(JSON.stringify(data));
++        } catch (_err) {
++          console.error(_err)
++          return xhr;
++        }
+       }, 20);
+       return xhr;
+     }
